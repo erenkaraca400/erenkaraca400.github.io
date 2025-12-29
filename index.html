@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Beleşizlebaba| Film Keyfi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="side-ad left-ad">
+        <a href="https://www.google.com" target="_blank">
+            <div class="ad-banner side-banner">
+                <span class="ad-badge">REKLAM</span>
+                <img src="images/indir.jfif" alt="Reklam">
+            </div>
+        </a>
+    </div>
+
+    <div class="side-ad right-ad">
+        <a href="https://www.google.com" target="_blank">
+            <div class="ad-banner side-banner">
+                <span class="ad-badge">REKLAM</span>
+                <img src="images/indir.jfif" alt="Reklam">
+            </div>
+        </a>
+    </div>
+
+    <div class="container">
+        <nav class="navbar">
+            <a href="#" class="logo" onclick="filterByCategory('Hepsi')">Beleşizlebaba</a>
+            
+            <div class="search-wrapper">
+                <input type="text" id="searchBar" placeholder="Film ara...">
+                <button class="search-btn">🔍</button>
+            </div>
+
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <button class="dropbtn">Kategoriler ▼</button>
+                    <div class="dropdown-content">
+                        <a href="javascript:void(0)" onclick="filterByCategory('Hepsi')">Tüm Filmler</a>
+                        <a href="javascript:void(0)" onclick="filterByCategory('Aksiyon')">Aksiyon</a>
+                        <a href="javascript:void(0)" onclick="filterByCategory('Bilim Kurgu')">Bilim Kurgu</a>
+                        <a href="javascript:void(0)" onclick="filterByCategory('Dram')">Dram</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="bonus-container">
+            <a href="https://www.google.com" target="_blank" class="bonus-link">
+                <div class="bonus-content">
+                    <div class="bonus-text">
+                        <span class="bonus-badge-tag">SÜPER FIRSAT</span>
+                        <h2>Şimdi Üye Ol <span>%45 BONUS</span> Kazan!</h2>
+                        <p>İlk üyeliğine özel kaçırılmayacak fırsat seni bekliyor.</p>
+                    </div>
+                    <div class="bonus-btn-box">HEMEN KATIL</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="ad-wrapper">
+            <a href="https://www.google.com" target="_blank">
+                <div class="ad-banner top-banner">
+                    <span class="ad-badge">REKLAM</span>
+                    <img src="images/indir.jfif" alt="Reklam">
+                </div>
+            </a>
+        </div>
+
+        <header class="hero" id="hero">
+            <div class="hero-content">
+                <h1 id="heroTitle">Beleşizlebaba</h1>
+                <p>En iyi filmler, en yüksek kalite.</p>
+            </div>
+        </header>
+
+        <section class="video-container" id="playerSection" style="display: none;">
+            <video id="mainVideo" controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+            <h2 id="playingTitle"></h2>
+        </section>
+
+        <section class="movie-section">
+            <h2 id="sectionTitle">Popüler Filmler</h2>
+            <div class="movie-grid" id="movieGrid"></div>
+        </section>
+
+        <div class="ad-wrapper footer-ad">
+            <div class="ad-banner top-banner">
+                <span class="ad-badge">REKLAM</span>
+                <img src="images/indir.jfif" alt="Reklam">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

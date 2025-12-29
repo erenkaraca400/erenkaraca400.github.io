@@ -1,0 +1,59 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #0b0b0b; color: white; overflow-x: hidden; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; }
+
+/* REKLAM ALANLARI */
+.side-ad { position: fixed; top: 0; width: 160px; height: 100vh; z-index: 99; padding-top: 10px; }
+.left-ad { left: 10px; }
+.right-ad { right: 10px; }
+
+.ad-banner { position: relative; background: #1a1a1a; border: 1px solid #333; overflow: hidden; height: 100%; width: 100%; border-radius: 8px; transition: 0.3s; }
+.top-banner { height: 95px; margin: 25px 0; }
+.ad-banner img { width: 100%; height: 100%; object-fit: cover; }
+.ad-badge { position: absolute; top: 5px; right: 5px; background: #ff0000; color: white; font-size: 10px; padding: 2px 6px; z-index: 10; font-weight: bold; border-radius: 3px; }
+
+/* BONUS BANNER STİLİ */
+.bonus-container {
+    margin: 20px 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #4a0000 100%);
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+.bonus-container:hover { transform: translateY(-3px); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); }
+.bonus-link { text-decoration: none; color: white; display: block; padding: 20px 30px; }
+.bonus-content { display: flex; justify-content: space-between; align-items: center; }
+.bonus-badge-tag { background: #ff0000; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+.bonus-text h2 span { color: #ffcc00; text-shadow: 0 0 5px rgba(255,204,0,0.5); }
+.bonus-btn-box { background: #ff0000; padding: 10px 25px; border-radius: 50px; font-weight: bold; }
+
+/* NAVBAR & ARAMA */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; background: #0b0b0b; position: sticky; top: 0; z-index: 1000; }
+.logo { color: #ff0000; font-size: 26px; font-weight: bold; text-decoration: none; }
+
+.search-wrapper { position: relative; display: flex; align-items: center; width: 450px; }
+#searchBar { width: 100%; padding: 14px 25px; background: #1a1a1a; border: 2px solid #333; border-radius: 40px; color: white; outline: none; transition: 0.4s; }
+#searchBar:focus { border-color: #ff0000; box-shadow: 0 0 15px rgba(255,0,0,0.3); }
+.search-btn { position: absolute; right: 6px; background: #ff0000; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+
+/* KATEGORİ */
+.dropbtn { background: #333; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 8px; font-weight: bold; }
+.dropdown { position: relative; }
+.dropdown-content { display: none; position: absolute; right: 0; background: #1a1a1a; min-width: 160px; border: 1px solid #333; border-radius: 8px; }
+.dropdown-content a { color: white; padding: 12px 20px; text-decoration: none; display: block; }
+.dropdown-content a:hover { background: #252525; color: #ff0000; }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* FİLMLER */
+.hero { height: 300px; background: linear-gradient(rgba(0,0,0,0.5), #0b0b0b), url('images/hero.jpg') center/cover; display: flex; align-items: center; justify-content: center; border-radius: 15px; }
+.movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 25px; padding: 30px 0; }
+.movie-card { background: #1a1a1a; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; border: 1px solid #222; }
+.movie-card:hover { transform: translateY(-10px); border-color: #ff0000; }
+.movie-card img { width: 100%; height: 270px; object-fit: cover; }
+.movie-info { padding: 15px; text-align: center; font-weight: bold; }
+
+.video-container { margin-bottom: 40px; }
+video { width: 100%; border-radius: 10px; }
+
+@media (max-width: 1400px) { .side-ad { display: none; } }
