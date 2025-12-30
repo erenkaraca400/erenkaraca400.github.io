@@ -4,11 +4,11 @@ const movies = [
     { title: "Matrix", img: "images/matrix.jpg", category: "Bilim Kurgu" },
     { title: "Interstellar", img: "images/interstellar.jpg", category: "Bilim Kurgu" },
     { title: "Avatar", img: "images/Avatar.jpg", category: "Dram" },
-    { title: "Spederman", img: "images/inception.jpg", category: "Aksiyon" },
-    { title: "Spederman2", img: "images/batman.jfif", category: "Aksiyon" },
-    { title: "Spederman3", img: "images/matrix.jpg", category: "Aksiyon" },
-    { title: "Amenzing Spederman", img: "images/interstellar.jpg", category: "Aksiyon" },
-    { title: "Amenzing Spederman2", img: "images/Avatar.jpg", category: "Aksiyon" }
+    { title: "Spederman", img: "images/spd.jpg", category: "Aksiyon" },
+    { title: "Spederman2", img: "images/spd2.jpg", category: "Aksiyon" },
+    { title: "Spederman3", img: "images/spd3.jpg.jpg", category: "Aksiyon" },
+    { title: "Amenzing Spederman", img: "images/amzspd1.jpg", category: "Aksiyon" },
+    { title: "Amenzing Spederman2", img: "images/amzspd2.jpg", category: "Aksiyon" }
 ];
 
 const movieGrid = document.getElementById("movieGrid");
@@ -47,5 +47,6 @@ searchBar.addEventListener("input", (e) => {
     const searched = movies.filter(m => m.title.toLowerCase().includes(term));
     renderMovies(searched);
 });
+
 
 renderMovies(movies);
