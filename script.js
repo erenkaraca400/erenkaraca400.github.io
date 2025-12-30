@@ -51,3 +51,4 @@ searchBar.addEventListener("input", (e) => {
 
 renderMovies(movies);
 
+
