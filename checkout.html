@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme ve Kimlik Onayı</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 data-i18n="checkout.title">💳 Ödeme ve Kayıt</h1>
+            <p class="subtitle" id="packageInfo">Seçilen Paket: Yükleniyor...</p>
+        </header>
+
+        <main class="main-content">
+            <section class="form-section">
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label>Ad Soyad:</label>
+                        <input type="text" id="userName" placeholder="Kart üzerindeki isim" required>
+                    </div>
+                    <div class="form-group">
+                        <label>TC Kimlik No:</label>
+                        <input type="text" maxlength="11" placeholder="11 haneli TC No" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kart Numarası:</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>SKT:</label><input type="text" placeholder="AA/YY" required></div>
+                        <div class="form-group"><label>CVV:</label><input type="password" placeholder="***" required></div>
+                    </div>
+                    <button type="submit" class="btn btn-add" data-i18n="checkout.pay" style="width:100%">Ödemeyi Yap ve Abone Ol</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // URL'den paket bilgilerini al
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const limit = params.get('limit');
+        const price = params.get('price');
+
+        document.getElementById('packageInfo').textContent = `Seçilen Paket: ${name} (₺${price})`;
+
+        document.getElementById('paymentForm').onsubmit = function(e) {
+            e.preventDefault();
+            
+            // Basit form doğrulaması
+            const userName = document.getElementById('userName').value.trim();
+            if (!userName) return showAlert(translate('checkout.nameRequired'));
+
+            // Aboneliği kaydet (kullanıcıya özel)
+            const currentUser = localStorage.getItem('dukkan_current_user');
+            const pkg = { name: name, limit: limit, price: price, purchasedAt: Date.now() };
+            if (currentUser) {
+                localStorage.setItem('dukkan_package_' + currentUser, JSON.stringify(pkg));
+            } else {
+                // guest fallback
+                localStorage.setItem('dukkan_package', JSON.stringify(pkg));
+            }
+
+            // reset user's weekly counter when they upgrade
+            if (currentUser) {
+                const weekStart = (new Date()).toISOString().split('T')[0];
+                localStorage.setItem('dukkan_weekly_' + currentUser, JSON.stringify({ start: weekStart, count: 0 }));
+            }
+
+            showSuccess(translate('checkout.success'));
+            window.location.href = 'index.html';
+        };
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

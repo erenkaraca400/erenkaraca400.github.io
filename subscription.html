@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abonelik Paketleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-inner">
+                <div>
+                    <h1 data-i18n="subscription.title">🏪 Abonelik Paketleri</h1>
+                    <p class="subtitle" data-i18n="subscription.subtitle">Mevcut paketiniz ve yükseltme seçenekleri</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="form-section">
+                <h2 data-i18n="nav.subs">Mevcut Abonelik</h2>
+                <p id="currentSub">Yükleniyor...</p>
+                <div id="status"></div>
+            </section>
+
+            <section class="form-section">
+                <h2>Paketler</h2>
+                <div class="package-grid">
+                    <div class="package-card">
+                        <h3 data-i18n="package.free">Ücretsiz</h3>
+                        <p data-i18n="package.free.desc">Haftalık 100 ürün ekleme limiti</p>
+                        <p><strong data-i18n="package.free.price">Fiyat: Ücretsiz</strong></p>
+                        <button class="btn btn-clear" disabled data-i18n="package.current">Mevcut</button>
+                    </div>
+
+                    <div class="package-card">
+                        <h3 data-i18n="package.basic">Basic</h3>
+                        <p data-i18n="package.basic.desc">Haftalık 500 ürün</p>
+                        <p><strong>₺29.99 / ay</strong></p>
+                        <button class="btn btn-add" onclick="buyPackage('Basic', 500, 29.99)" data-i18n="package.buy">Satın Al</button>
+                    </div>
+
+                    <div class="package-card">
+                        <h3 data-i18n="package.pro">Pro</h3>
+                        <p data-i18n="package.pro.desc">Sınırsız ürün</p>
+                        <p><strong>₺79.99 / ay</strong></p>
+                        <button class="btn btn-add" onclick="buyPackage('Pro', 'unlimited', 79.99)" data-i18n="package.buy">Satın Al</button>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <a class="btn btn-clear" href="index.html" data-i18n="nav.home">← Ana Sayfaya Dön</a>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2026 Dükkan Mal Takip Sistemi</p>
+        </footer>
+    </div>
+
+    <script>
+        const PACKAGE_KEY = 'dukkan_package';
+
+        function buyPackage(name, limit, price) {
+            // require login: if not logged in, prompt to sign up / login first
+            const currentUser = localStorage.getItem('dukkan_current_user');
+            if (!currentUser) {
+                localStorage.setItem('dukkan_temp_action', 'buy');
+                window.location.href = 'login.html';
+                return;
+            }
+            const url = `checkout.html?name=${encodeURIComponent(name)}&limit=${encodeURIComponent(limit)}&price=${encodeURIComponent(price)}`;
+            window.location.href = url;
+        }
+
+        function loadCurrent() {
+            const saved = localStorage.getItem(PACKAGE_KEY);
+            const el = document.getElementById('currentSub');
+            if (saved) {
+                try {
+                    const pkg = JSON.parse(saved);
+                    const name = (pkg.name === 'Ücretsiz' || pkg.name === 'Free') ? (typeof translate === 'function' ? translate('package.free') : pkg.name) : pkg.name;
+                    el.textContent = name + (pkg.limit === 'unlimited' ? ' (' + (typeof translate === 'function' ? 'Sınırsız' : 'Sınırsız') + ')' : ' (' + pkg.limit + '/hafta)');
+                } catch (e) {
+                    el.textContent = (typeof translate === 'function' ? translate('package.free') : 'Ücretsiz') + ' (100/hafta)';
+                }
+            } else {
+                el.textContent = (typeof translate === 'function' ? translate('package.free') : 'Ücretsiz') + ' (100/hafta)';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCurrent);
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

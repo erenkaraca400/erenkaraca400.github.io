@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Dükkan Stok Takip Sistemi</title>
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+<header class="header">
+    <div class="header-inner">
+        <div>
+            <h1>🏪 Dükkan Stok Takip Sistemi</h1>
+            <p class="subtitle">Envanterinizi Kolayca Yönetin</p>
+        </div>
+    </div>
+</header>
+
+<section class="subscription-bar">
+    <div class="sub-inner">
+        <span>
+            Abonelik:
+            <strong id="currentPackage">Ücretsiz</strong> |
+            Haftalık Kalan:
+            <strong id="weeklyRemaining">100</strong>
+        </span>
+
+        <div class="auth-actions" style="margin-left:auto; display:flex; gap:8px;">
+            <a href="login.html" class="btn btn-clear">Giriş Yap</a>
+            <a href="signup.html" class="btn btn-add">Katıl</a>
+            <a href="subscription.html" class="btn btn-clear">Abonelikler</a>
+            <a href="settings.html" class="btn btn-clear">Ayarlar</a>
+        </div>
+    </div>
+</section>
+
+<main class="main-content">
+
+<section class="form-section">
+    <h2 data-i18n="products.add">Yeni Ürün Ekle</h2>
+
+    <form id="productForm" class="form">
+        <p id="productLockNote" class="note" style="display:none; color:#c0392b; margin-bottom:10px;" data-i18n="products.login_required">Ürün eklemek için giriş yapın veya kayıt olun</p>
+        <div class="form-group">
+            <label>Ürün Adı</label>
+            <input type="text" id="productName" placeholder="Ürün adını girin" required>
+        </div>
+
+        <div class="form-group">
+            <label>Kategori</label>
+            <select id="productCategory" required>
+                <option value="">Kategori Seçin</option>
+                <option>Tütün</option>
+                <option>Hediyelik</option>
+                <option>Elektronik</option>
+                <option>Giyim</option>
+                <option>Yiyecek</option>
+                <option>İçecek</option>
+                <option>Temizlik</option>
+                <option>Mutfak</option>
+                <option>Kırtasiye</option>
+                <option>Ev Eşyası</option>
+                <option>Kozmetik</option>
+                <option>Kitap</option>
+                <option>Diğer</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Miktar</label>
+                <input type="number" id="productQuantity" min="1" required>
+            </div>
+            <div class="form-group">
+                <label>Fiyat (₺)</label>
+                <input type="number" id="productPrice" step="0.01" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Açıklama</label>
+            <textarea id="productDescription" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-add">➕ Ürün Ekle</button>
+    </form>
+</section>
+
+<section class="search-section">
+    <h2>Ürünler</h2>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Ürün ara..." class="search-input">
+        <select id="filterCategory" class="filter-select">
+            <option value="">Tüm Kategoriler</option>
+            <option>Tütün</option>
+            <option>Hediyelik</option>
+            <option>Elektronik</option>
+            <option>Giyim</option>
+            <option>Yiyecek</option>
+            <option>İçecek</option>
+            <option>Temizlik</option>
+            <option>Mutfak</option>
+            <option>Kırtasiye</option>
+            <option>Ev Eşyası</option>
+            <option>Kozmetik</option>
+            <option>Kitap</option>
+            <option>Diğer</option>
+        </select>
+
+        <button id="deleteAllBtn" class="btn btn-danger">🧹 Hepsini Sil</button>
+    </div>
+</section>
+
+<section class="products-section">
+    <div id="productsList" class="products-grid">
+        <p class="empty-message">
+            Henüz ürün eklenmemiş. İlk ürünü ekleyerek başlayın!
+        </p>
+    </div>
+</section>
+
+<section class="critical-section">
+    <h2 data-i18n="critical.title">Kritik</h2>
+    <div id="criticalList" class="critical-list">
+        <p class="empty-message" data-i18n="critical.none">Kritik ürün yok</p>
+    </div>
+</section>
+
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Toplam Ürün</h3>
+            <p id="totalProducts">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>Toplam Stok</h3>
+            <p id="totalStock">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>Toplam Değer</h3>
+            <p id="totalValue">₺0.00</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 Dükkan Mal Takip Sistemi</p>
+    <p>Müşteri Hizmetleri: 0505 856 19 76</p>
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

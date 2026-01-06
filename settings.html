@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayarlar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 data-i18n="settings.title">⚙️ Ayarlar</h1>
+            <p class="subtitle" data-i18n="settings.subtitle">Hesap bilgilerinizi güncelleyin</p>
+        </header>
+
+        <main class="main-content">
+            <div class="form-row" style="gap:24px; align-items:flex-start;">
+                <aside style="width:220px;">
+                    <nav class="form-section" style="padding:16px;">
+                        <h3 data-i18n="settings.title">Ayarlar</h3>
+                        <ul style="list-style:none; padding-left:0; margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+                            <li><a href="#account" data-i18n="settings.account">Hesap</a></li>
+                            <li><a href="#interface" data-i18n="settings.interface">Arayüz</a></li>
+                            <li><a href="#language" data-i18n="settings.language">Dil</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <div style="flex:1; position:relative;">
+                    <button id="globalSave" class="btn btn-add global-save" data-i18n="save">Kaydet</button>
+
+                    <section id="account" class="form-section">
+                        <h2 data-i18n="settings.account">Hesap</h2>
+                        <p data-i18n="settings.userLabel">Kullanıcı: <strong id="settingsUsername">Ziyaretçi</strong></p>
+                        <p id="accountNote" style="color:#666;" data-i18n="settings.accountNote">Giriş yapmadan sadece görüntülenen ismi değiştiremezsiniz. Lütfen giriş yapın.</p>
+
+                        <form id="settingsForm">
+                            <div class="form-group">
+                                <label data-i18n="settings.displayLabel">Görünen İsim</label>
+                                <input type="text" id="setDisplay" placeholder="Görünen ismi girin" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label data-i18n="settings.passwordLabel">Yeni Şifre (isteğe bağlı)</label>
+                                <input type="password" id="setPassword" placeholder="Yeni şifre" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label data-i18n="settings.addressLabel">Dükkan Adresi</label>
+                                <input type="text" id="setAddress" data-i18n="settings.addressPlaceholder" placeholder="Dükkan adresinizi girin" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label data-i18n="settings.avatarLabel">Profil Resmi</label>
+                                <input type="file" id="setAvatar" accept="image/*" disabled>
+                                <img id="setAvatarPreview" alt="" style="max-width:110px; display:block; margin-top:8px; border-radius:8px;">
+                                <p style="margin-top:8px;"><button id="removeAvatarBtn" class="btn btn-clear" disabled data-i18n="remove_avatar">Resmi Kaldır</button></p>
+                            </div>
+
+                        </form>
+                    </section>
+
+                    <section id="interface" class="form-section">
+                        <h2 data-i18n="settings.interface">Arayüz</h2>
+                        <p data-i18n="settings.interfaceNote">Ayarlarınızı kişiselleştirin (Karanlık tema yok — siyah yapma isteğine göre açık tutuldu).</p>
+                        <div class="form-group">
+                            <label data-i18n="settings.themeLabel">Temayı Seç</label>
+                            <select id="uiTheme">
+                                <option value="light" data-i18n="theme.light">Açık (varsayılan)</option>
+                                <option value="dark" data-i18n="theme.dark">Koyu</option>
+                            </select>
+                        </div>
+                    </section>
+
+                    <section id="language" class="form-section">
+                        <h2>Dil</h2>
+                        <p>Uygulama dili seçiniz (yalnızca seçim kaydedilir; tam çeviri henüz yok).</p>
+                        <div class="form-group">
+                            <label>Dil Seçimi</label>
+                            <select id="uiLanguage">
+                                <option value="tr" data-i18n="lang.tr">Türkçe</option>
+                                <option value="en" data-i18n="lang.en">English</option>
+                                <option value="es" data-i18n="lang.es">Español</option>
+                                <option value="fr" data-i18n="lang.fr">Français</option>
+                            </select>
+                        </div>
+                    </section>
+
+                    <p style="margin-top:12px;"><a class="btn btn-clear" href="index.html" data-i18n="nav.home">← Ana Sayfaya Dön</a></p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 Dükkan Mal Takip Sistemi</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof getCurrentUser !== 'function') return;
+            const user = getCurrentUser();
+            const username = document.getElementById('settingsUsername');
+            const display = document.getElementById('setDisplay');
+            const pass = document.getElementById('setPassword');
+            const saveAccount = document.getElementById('saveAccount');
+            const accountNote = document.getElementById('accountNote');
+            if (user) {
+                if (username) username.textContent = user.username;
+                if (display) { display.value = user.display || user.username; display.disabled = false; }
+                if (pass) pass.disabled = false;
+                if (saveAccount) saveAccount.disabled = false;
+                if (accountNote) accountNote.style.display = 'none';
+
+                // Avatar inputs: enable and preview existing avatar if any
+                const setAvatar = document.getElementById('setAvatar');
+                const setAvatarPreview = document.getElementById('setAvatarPreview');
+                const removeAvatarBtn = document.getElementById('removeAvatarBtn');
+                if (setAvatar) setAvatar.disabled = false;
+                if (removeAvatarBtn) removeAvatarBtn.disabled = false;
+                if (setAvatarPreview) {
+                    if (user.avatar) setAvatarPreview.src = user.avatar;
+                    else setAvatarPreview.src = generateRandomAvatar(user.username || Math.random().toString(36));
+                    setAvatarPreview.dataset.remove = '0';
+                }
+                if (setAvatar) setAvatar.addEventListener('change', (ev) => {
+                    const f = ev.target.files && ev.target.files[0];
+                    if (f && setAvatarPreview) {
+                        setAvatarPreview.src = URL.createObjectURL(f);
+                        setAvatarPreview.dataset.remove = '0';
+                    }
+                });
+                if (removeAvatarBtn) removeAvatarBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (setAvatar) setAvatar.value = '';
+                    if (setAvatarPreview) { setAvatarPreview.src = ''; setAvatarPreview.dataset.remove = '1'; }
+                });
+                // address input
+                const setAddress = document.getElementById('setAddress');
+                if (setAddress) {
+                    setAddress.disabled = false;
+                    setAddress.value = user.address || '';
+                }
+
+            } else {
+                if (username) username.textContent = 'Ziyaretçi';
+                if (accountNote) accountNote.style.display = 'block';
+            }
+
+            // load saved interface settings
+            const saved = JSON.parse(localStorage.getItem('dukkan_settings') || '{}');
+            const lang = document.getElementById('uiLanguage');
+            const theme = document.getElementById('uiTheme');
+            if (lang && saved.language) lang.value = saved.language;
+            if (theme && saved.theme) theme.value = saved.theme;
+        });
+    </script>
+</body>
+
+</html>

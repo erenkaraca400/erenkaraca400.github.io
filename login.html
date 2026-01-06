@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Yap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔐 Giriş Yap</h1>
+            <p class="subtitle">Hesabınıza giriş yapın</p>
+        </header>
+
+        <main class="main-content">
+            <section class="form-section">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Kullanıcı Adı</label>
+                        <input type="text" id="liUsername" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        <input type="password" id="liPassword" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><input type="checkbox" id="liRemember"> Beni Hatırla</label>
+                    </div>
+
+                    <button class="btn btn-add" data-i18n="btn.login">Giriş Yap</button>
+                    <p style="margin-top:12px;"><a class="btn btn-clear" href="index.html" data-i18n="nav.home">← Ana Sayfaya Dön</a></p>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

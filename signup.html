@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Ol</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📝 Yeni Hesap Oluştur</h1>
+            <p class="subtitle">Ücretsiz pakete başlayın</p>
+        </header>
+
+        <main class="main-content">
+            <section class="form-section">
+                <form id="signupForm">
+
+                    <div class="form-group">
+                        <label>Kullanıcı Adı</label>
+                        <input type="text" id="suUsername" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        <input type="password" id="suPassword" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>İsim (opsiyonel)</label>
+                        <input type="text" id="suDisplay">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="settings.addressLabel">Dükkan Adresi (opsiyonel)</label>
+                        <input type="text" id="suAddress" data-i18n="settings.addressPlaceholder" placeholder="Dükkan adresinizi girin">
+                    </div>
+                    <div class="form-group">
+                        <label>Profil Resmi (opsiyonel)</label>
+                        <input type="file" id="suAvatar" accept="image/*">
+                        <img id="suAvatarPreview" alt="" style="max-width:90px; display:block; margin-top:8px; border-radius:8px;">
+                    </div>
+                    <button class="btn btn-add" data-i18n="btn.signup">Hesap Oluştur</button>
+                    <p style="margin-top:12px;"><a class="btn btn-clear" href="index.html" data-i18n="nav.home">← Ana Sayfaya Dön</a></p>
+
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
