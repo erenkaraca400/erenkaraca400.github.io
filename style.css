@@ -44,7 +44,7 @@ body {
    CONTAINER
 ========================= */
 .container {
-    max-width: 1200px;
+    max-width: 200px;
     margin: auto;
     background: var(--bg-soft);
     border-radius: 14px;
@@ -399,3 +399,4 @@ body {
 .container {
   background: transparent;
 }
+
