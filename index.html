@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halı Saha Rezervasyon Sistemi</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo">
+                <span class="logo-mark">⚽</span>
+                <div>
+                    <h1>SahaMatik</h1>
+                    <p>Hızlı, Kolay ve Çakışmasız Rezervasyon</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary" onclick="showAdminLoginModal()">Yönetici Giriş</button>
+                <button class="btn-secondary" onclick="showSignupModal()">Üye Ol</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero-panel">
+                <div class="hero-copy">
+                    <p class="eyebrow">KÜTAHYA için</p>
+                    <h2>6 adet saha bulundu</h2>
+                    <p>Şimdi saha fotoğraflarını keşfedin, detay sayfasına gidin ve rezervasyonunuzu tamamlayın.</p>
+                </div>
+                <div class="hero-actions">
+                    <div class="hero-pill">Merkez / KÜTAHYA</div>
+                    <div class="hero-pill">6 Saha</div>
+                    <div class="hero-pill">Hemen İncele</div>
+                </div>
+            </section>
+
+            <div class="main-grid">
+                <aside class="sidebar">
+                    <section class="search-summary">
+                        <div class="summary-title">Arama Sonuçları</div>
+                        <div class="summary-text">KÜTAHYA için 6 adet popüler halı saha bulundu</div>
+                    </section>
+
+                    <section class="field-list-section">
+                        <div class="section-header">
+                            <h3>Popüler Halı Sahalar</h3>
+                            <span class="badge">Saha Fotoğrafları</span>
+                        </div>
+                        <div id="fieldList" class="saha-grid"></div>
+                    </section>
+                </aside>
+
+                <section class="content">
+                    <section class="overview-card">
+                        <h3>Hızlı rezervasyon için tasarlandı</h3>
+                        <p>Kütahya&apos;daki en iyi sahaları gör, saha detaylarına git ve saatini hemen ayır.</p>
+                        <div class="feature-grid">
+                            <div class="feature-item">6 saha</div>
+                            <div class="feature-item">Online rezervasyon</div>
+                            <div class="feature-item">Güncel fiyatlar</div>
+                        </div>
+                    </section>
+
+                    <section class="admin-panel hidden" id="adminPanel">
+                        <h3>Yönetici Paneli</h3>
+                        <p class="schedule-note">Rezervasyonları onayla, iptal et veya kapalı saat ekle.</p>
+                        <div id="adminPanelList" class="grid-display"></div>
+                        <button onclick="adminCikis()" class="btn-secondary">Çıkış Yap</button>
+                    </section>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div class="modal hidden" id="signupModal">
+        <div class="modal-dialog">
+            <button class="modal-close" onclick="closeSignupModal()">×</button>
+            <h3>Halı Saha Sahibi Üye Ol</h3>
+            <p>Üye olduğunuzda işletme bilgilerinizi yönetebilir ve yöneticinin görmesini sağlayabilirsiniz.</p>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" id="ownerAdSoyad" placeholder="Örn: Ahmet Yılmaz">
+                </div>
+                <div class="input-group">
+                    <label>Telefon</label>
+                    <input type="tel" id="ownerTelefon" placeholder="0555 XXX XX XX">
+                </div>
+                <div class="input-group">
+                    <label>E-posta</label>
+                    <input type="email" id="ownerEmail" placeholder="Örn: ahmet@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Şehir</label>
+                    <input type="text" id="ownerSehir" placeholder="Kütahya">
+                </div>
+                <div class="input-group">
+                    <label>Saha Seçin</label>
+                    <select id="ownerSaha">
+                        <option value="Kütahya Kentpark Halı Saha">Kütahya Kentpark Halı Saha</option>
+                        <option value="Etap43 Halısaha">Etap43 Halısaha</option>
+                        <option value="Dayanlar Halı Saha">Dayanlar Halı Saha</option>
+                        <option value="Güleçler Halı Saha">Güleçler Halı Saha</option>
+                        <option value="Berkay Çim Halı Saha">Berkay Çim Halı Saha</option>
+                        <option value="Yeşilay Kapalı">Yeşilay Kapalı</option>
+                    </select>
+                </div>
+                <button onclick="ownerSignup()" class="btn-primary">Üye Ol</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal hidden" id="adminLoginModal">
+        <div class="modal-dialog">
+            <button class="modal-close" onclick="closeAdminLoginModal()">×</button>
+            <h3>Yönetici Girişi</h3>
+            <p>Yönetici paneline ulaşmak için hesabınızla giriş yapın.</p>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Yönetici Adı</label>
+                    <input type="text" id="adminAd" placeholder="Yönetici adı">
+                </div>
+                <div class="input-group">
+                    <label>Şifre</label>
+                    <input type="password" id="adminSifre" placeholder="Şifre">
+                </div>
+                <button onclick="adminGiris()" class="btn-primary">Giriş Yap</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

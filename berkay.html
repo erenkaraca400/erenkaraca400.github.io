@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berkay Çim Halı Saha</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+<body data-field-page="true" data-field-title="Berkay Çim Halı Saha">
+    <div class="container">
+        <header class="main-header">
+            <div class="logo">
+                <span class="logo-mark">⚽</span>
+                <div>
+                    <h1>Berkay Çim Halı Saha</h1>
+                    <p>Rezervasyon sayfası</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary" onclick="window.location.href='index.html'">Ana Sayfa</button>
+                <button class="btn-secondary" onclick="showAdminLoginModal()">Yönetici Giriş</button>
+                <button class="btn-secondary" onclick="showSignupModal()">Üye Ol</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero-panel">
+                <div class="hero-copy">
+                    <p class="eyebrow">KÜTAHYA / Berkay Çim</p>
+                    <h2>Berkay Çim Halı Saha Rezervasyon</h2>
+                    <p>Bu sayfada sadece Berkay Çim sahası için haftalık takvim ve rezervasyon formu bulunuyor.</p>
+                </div>
+                <div class="hero-media">
+                    <img src="indir.jfif" alt="Berkay Çim Halı Saha" class="field-image">
+                </div>
+                <div class="hero-actions">
+                    <div class="hero-pill">Fiyat: 410-495 TL</div>
+                    <div class="hero-pill">4.7 ★</div>
+                    <div class="hero-pill">Merkez</div>
+                </div>
+            </section>
+
+            <section class="schedule-card">
+                <div class="schedule-header">
+                    <div>
+                        <h3>Berkay Çim Haftalık Takvim</h3>
+                        <p class="schedule-note">Yeşil: boş, kırmızı: dolu, turuncu: kapalı.</p>
+                    </div>
+                </div>
+                <div id="weeklyCalendar" class="weekly-calendar"></div>
+            </section>
+
+            <section class="booking-card" id="bookingCard">
+                <h2>Berkay Çim Rezervasyon Oluştur</h2>
+                <p class="selected-field">Seçili Saha: <strong id="selectedFieldName">Berkay Çim Halı Saha</strong></p>
+                <p class="schedule-note">Lütfen tarih ve saat seçip rezervasyonunuzu tamamlayın.</p>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Ad Soyad</label>
+                        <input type="text" id="adSoyad" placeholder="Örn: Mustafa Ceylan">
+                    </div>
+                    <div class="input-group">
+                        <label>Telefon</label>
+                        <input type="tel" id="telefon" placeholder="0555 XXX XX XX">
+                    </div>
+                    <div class="input-group">
+                        <label>Kapora Durumu</label>
+                        <select id="kapora">
+                            <option value="Hayır">Hayır</option>
+                            <option value="Evet">Evet</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Tarih Seçin</label>
+                        <input type="date" id="tarih">
+                    </div>
+                    <div class="input-group">
+                        <label>Saat Dilimi</label>
+                        <select id="saat">
+                            <option value="17:00">17:00 - 18:00</option>
+                            <option value="18:00">18:00 - 19:00</option>
+                            <option value="19:00">19:00 - 20:00</option>
+                            <option value="20:00">20:00 - 21:00 (Gece)</option>
+                            <option value="21:00">21:00 - 22:00 (Gece)</option>
+                            <option value="22:00">22:00 - 23:00 (Gece)</option>
+                        </select>
+                    </div>
+                    <button onclick="rezervasyonYap()" class="btn-primary">Rezervasyon Yap</button>
+                </div>
+            </section>
+
+            <section class="list-section">
+                <h3>Rezervasyon Listesi</h3>
+                <div id="rezervasyonListesi" class="grid-display"></div>
+            </section>
+
+            <section class="admin-panel hidden" id="adminPanel">
+                <h3>Yönetici Paneli</h3>
+                <p class="schedule-note">Rezervasyonları onayla, iptal et veya kapalı saat ekle.</p>
+                <div id="adminPanelList" class="grid-display"></div>
+                <button onclick="adminCikis()" class="btn-secondary">Çıkış Yap</button>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal hidden" id="signupModal">
+        <div class="modal-dialog">
+            <button class="modal-close" onclick="closeSignupModal()">×</button>
+            <h3>Halı Saha Sahibi Üye Ol</h3>
+            <p>Üye olduğunuzda işletme bilgilerinizi yönetebilir ve yöneticinin görmesini sağlayabilirsiniz.</p>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" id="ownerAdSoyad" placeholder="Örn: Ahmet Yılmaz">
+                </div>
+                <div class="input-group">
+                    <label>Telefon</label>
+                    <input type="tel" id="ownerTelefon" placeholder="0555 XXX XX XX">
+                </div>
+                <div class="input-group">
+                    <label>E-posta</label>
+                    <input type="email" id="ownerEmail" placeholder="Örn: ahmet@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Şehir</label>
+                    <input type="text" id="ownerSehir" placeholder="Kütahya">
+                </div>
+                <div class="input-group">
+                    <label>Saha Seçin</label>
+                    <select id="ownerSaha">
+                        <option value="Kütahya Kentpark Halı Saha">Kütahya Kentpark Halı Saha</option>
+                        <option value="Etap43 Halısaha">Etap43 Halısaha</option>
+                        <option value="Dayanlar Halı Saha">Dayanlar Halı Saha</option>
+                        <option value="Güleçler Halı Saha">Güleçler Halı Saha</option>
+                        <option value="Berkay Çim Halı Saha">Berkay Çim Halı Saha</option>
+                        <option value="Yeşilay Kapalı">Yeşilay Kapalı</option>
+                    </select>
+                </div>
+                <button onclick="ownerSignup()" class="btn-primary">Üye Ol</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="adminLoginModal">
+        <div class="modal-dialog">
+            <button class="modal-close" onclick="closeAdminLoginModal()">×</button>
+            <h3>Yönetici Girişi</h3>
+            <p>Yönetici paneline ulaşmak için hesabınızla giriş yapın.</p>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Yönetici Adı</label>
+                    <input type="text" id="adminAd" placeholder="Yönetici adı">
+                </div>
+                <div class="input-group">
+                    <label>Şifre</label>
+                    <input type="password" id="adminSifre" placeholder="Şifre">
+                </div>
+                <button onclick="adminGiris()" class="btn-primary">Giriş Yap</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
